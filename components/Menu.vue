@@ -61,8 +61,8 @@
       <li class="menu-header small text-uppercase">
         <span class="menu-header-text">Overview</span>
       </li>
-
-      <li class="menu-item active">
+<!-- Activ3e e open -->
+      <li class="menu-item">
         <NuxtLink to="/dashboard" class="menu-link">
           <i class="menu-icon tf-icons bx bx-home-circle"></i>
           <div data-i18n="Analytics">Dashboard</div>
@@ -77,7 +77,7 @@
       </li>
 
       <li class="menu-item">
-        <NuxtLink to="/dashboard/spents" class="menu-link">
+        <NuxtLink to="/dashboard/wallet" class="menu-link">
           <i class="menu-icon tf-icons bx bx-wallet"></i>
           <div data-i18n="Analytics">Wallets</div>
         </NuxtLink>
