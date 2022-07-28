@@ -1,11 +1,11 @@
 <template>
   <div class="content-wrapper">
-    <!-- Content -->
+
     <div class="container-xxl flex-grow-1 container-p-y">
 
-      <button type="button" class="btn btn-primary float-end">
+      <NuxtLink to="/dashboard/wallet/new" type="button" class="btn btn-primary float-end">
         <span class="tf-icons bx bx-plus"></span>&nbsp; Create Wallet
-      </button>
+      </NuxtLink>
 
       <div class="row mb-5 create-button-margin">
         <div class="col-md-6 col-lg-4">
@@ -26,6 +26,16 @@
     </div>
   </div>
 </template>
+
+<script>
+  export default {
+
+    async asyncData({ store }) {
+      const wallets = await store.dispatch('/wallet/getWallets')
+      return { wallets: wallets.data.response }
+    }
+  }
+</script>
 
 <style scoped>
   .create-button-margin {
