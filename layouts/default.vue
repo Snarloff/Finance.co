@@ -35,3 +35,7 @@
     <div class="layout-overlay layout-menu-toggle"></div>
   </div>
 </template>
+
+<style src="@/assets/vendor/css/core.css"></style>
+<style src="@/assets/vendor/css/theme-default.css"></style>
+<style src="@/assets/css/demo.css"></style>
