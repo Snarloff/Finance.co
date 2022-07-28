@@ -8,26 +8,36 @@
       </NuxtLink>
 
       <div class="row mb-5 create-button-margin">
-        <div class="col-md-6 col-lg-4">
-          <div class="card mb-4">
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <div class="card-subtitle text-muted mb-3">Card subtitle</div>
-              <p class="card-text">
-                Some quick example text to build on the card title and make up the bulk of the card's content.
-              </p>
-              <a href="javascript:void(0)" class="card-link">Card link</a>
-              <a href="javascript:void(0)" class="card-link">Another link</a>
+
+        <div class="row mb-5">
+          <div class="col-md-6 col-lg-4 mb-3" v-for="wallet in wallets" :key="wallet.id">
+            <div class="card">
+              <div class="card-header">$ {{ wallet.money }}</div>
+              <div class="card-body">
+                <h5 class="card-title">{{ wallet.title }}</h5>
+                <p class="card-text">
+                  {{ wallet.subtitle }}
+                </p>
+
+                <hr />
+
+                <div class="text-center">
+                  <a href="javascript:void(0)" class="btn btn-primary">Edit</a>
+                  <a href="javascript:void(0)" class="btn btn-primary">Delete</a>
+                  <div class="card-text text-muted mt-4">2 days ago</div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+<<<<<<< HEAD
   export default {
 
     async asyncData({ store }) {
@@ -40,5 +50,20 @@
 <style scoped>
   .create-button-margin {
     margin-top: 4rem;
+=======
+export default {
+
+  async asyncData({ store }) {
+    const wallets = await store.dispatch('wallet/getWallets')
+    return { wallets: wallets.data.response }
+>>>>>>> 313c9d7fa6510012c40f9e018b4e2f696a3b028b
   }
+
+}
+</script>
+
+<style scoped>
+.create-button-margin {
+  margin-top: 4rem;
+}
 </style>
