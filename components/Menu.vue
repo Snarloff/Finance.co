@@ -77,7 +77,7 @@
       </li>
 
       <li class="menu-item">
-        <NuxtLink to="/dashboard/spents" class="menu-link">
+        <NuxtLink to="/dashboard/wallet" class="menu-link">
           <i class="menu-icon tf-icons bx bx-wallet"></i>
           <div data-i18n="Analytics">Wallets</div>
         </NuxtLink>
