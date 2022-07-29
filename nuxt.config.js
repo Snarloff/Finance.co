@@ -4,7 +4,7 @@ export default {
     title: 'Finance.co',
     htmlAttrs: {
       lang: 'pt-br',
-      class: 'light-style customizer-hide',
+      class: 'light-style layout-menu-fixed',
       dir: 'ltr',
       'data-theme': 'theme-default',
       'data-template': 'vertical-menu-template-free',
@@ -48,8 +48,8 @@ export default {
   ],
 
   script: [
-    { src: '~/assets/vendor/js/helpers.js' },
-    { src: '~/assets/js/config.js' },
+    { src: '~/assets/vendor/js/helpers.js', body: false },
+    { src: '~/assets/js/config.js', body: false },
     { src: '~/assets/vendor/libs/popper/popper.js' },
     { src: '~/assets/vendor/libs/jquery/jquery.js' },
     { src: '~/assets/vendor/js/bootstrap.js' },
