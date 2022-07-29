@@ -22,8 +22,7 @@
                 <hr />
 
                 <div class="text-center">
-                  <NuxtLink :to="{ name: 'dashboard-wallet-edit-id', params: { id: wallet.id } }"
-                    class="btn btn-primary">Edit</NuxtLink>
+                  <NuxtLink :to="{ name: 'dashboard-wallet-edit-id', params: { id: wallet.id } }" class="btn btn-primary">Edit</NuxtLink>
                   <a href="javascript:void(0)" class="btn btn-primary">Delete</a>
                   <div class="card-text text-muted mt-4">2 days ago</div>
                 </div>
