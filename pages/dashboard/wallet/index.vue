@@ -22,13 +22,9 @@
                 <hr />
 
                 <div class="text-center">
-<<<<<<< HEAD
-                  <NuxtLink :to="{ name: 'dashboard-wallet-edit-id', params: { id: wallet.id }}" class="btn btn-primary">Edit</NuxtLink>
-=======
                   <NuxtLink :to="{ name: 'dashboard-wallet-edit-id', params: { id: wallet.id } }"
                     class="btn btn-primary">Edit</NuxtLink>
->>>>>>> 59d86ef760aad66be7f30af6ad8d3536f2775c52
-                  <a href="javascript:void(0)" class="btn btn-primary">Delete</a>
+                  <button @click="deleteWallet(wallet.id)" class="btn btn-primary">Delete</button>
                   <div class="card-text text-muted mt-4">2 days ago</div>
                 </div>
               </div>
@@ -47,8 +43,28 @@ export default {
   async asyncData({ store }) {
     const wallets = await store.dispatch('wallet/getWallets')
     return { wallets: wallets.data.response }
+  },
+
+  methods: {
+
+    async deleteWallet(id) {
+
+      const confirm = window.confirm('Do you really want to delete this Wallet?')
+
+      if (confirm) {
+
+        try {
+          await this.$store.dispatch('wallet/deleteWallet', id)
+          this.wallets.splice(this.wallets.indexOf(id), 1)
+        } catch (error) {
+          console.log(error)
+        }
+      }
+    }
   }
+
 }
+
 </script>
 
 <style scoped>
