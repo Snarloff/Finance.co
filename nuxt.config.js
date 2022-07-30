@@ -5,9 +5,6 @@ export default {
     htmlAttrs: {
       lang: 'pt-br',
       class: 'light-style layout-menu-fixed',
-      dir: 'ltr',
-      'data-theme': 'theme-default',
-      'data-template': 'vertical-menu-template-free',
     },
     meta: [
       { charset: 'utf-8' },
@@ -27,13 +24,7 @@ export default {
       {
         src: "https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js",
         type: "text/javascript"
-      },
-      {
-        src: "https://buttons.github.io/buttons.js",
-        type: "text/javascript",
-        async: true,
-        defer: true
-      },
+      }
     ],
   },
 
@@ -43,25 +34,15 @@ export default {
     '~/assets/vendor/css/theme-default.css',
     '~/assets/vendor/css/core.css',
     '~/assets/css/demo.css',
-    '~/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css',
-    '~/assets/vendor/libs/apex-charts/apex-charts.css',
   ],
 
   script: [
-    { src: '~/assets/vendor/js/helpers.js', body: false },
-    { src: '~/assets/js/config.js', body: false },
-    { src: '~/assets/vendor/libs/popper/popper.js' },
-    { src: '~/assets/vendor/libs/jquery/jquery.js' },
-    { src: '~/assets/vendor/js/bootstrap.js' },
-    { src: '~/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js' },
-    { src: '~/assets/vendor/js/menu.js' },
-    { src: '~/assets/vendor/libs/apex-charts/apexcharts.js' },
-    { src: '~/assets/js/main.js' },
-    { src: '~/assets/js/dashboards-analytics.js' },
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [],
+  plugins: [
+    { src: '~/plugins/vue.picker.js', mode: 'client' }
+  ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,

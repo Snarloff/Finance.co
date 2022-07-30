@@ -47,10 +47,10 @@
               </g>
             </svg>
           </span>
-          <span class="app-brand-text demo menu-text fw-bolder ms-2">Sneat</span>
+          <span class="app-brand-text demo menu-text fw-bolder ms-2">finance.co</span>
         </a>
 
-        <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
+        <a href="javascript:void(0)" @click="activeCollapsedMenu" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
           <i class="bx bx-chevron-left bx-sm align-middle"></i>
         </a>
       </div>
@@ -58,74 +58,68 @@
       <div class="menu-inner-shadow"></div>
 
       <ul class="menu-inner py-1">
-        <!-- Dashboard -->
-        <li class="menu-header small text-uppercase">
-          <span class="menu-header-text">Overview</span>
-        </li>
-        <!-- Activ3e e open -->
-        <li class="menu-item">
-          <NuxtLink to="/dashboard" class="menu-link">
-            <i class="menu-icon tf-icons bx bx-home-circle"></i>
-            <div data-i18n="Analytics">Dashboard</div>
+
+        <li v-for="menu in menuLinks" :key="menu.id" @click="activeMenuLink(menu.id)"
+          :class="[menu.header ? 'menu-header small text-uppercase' : 'menu-item', menu.active ? 'active' : '']">
+
+          <span class="menu-header-text" v-if="menu.header">{{ menu.label }}</span>
+          
+          <NuxtLink :to="menu.link" class="menu-link" v-else>
+            <i :class="'menu-icon tf-icons bx ' + menu.icon"></i>
+            <div data-i18n="Analytics">{{ menu.label }}</div>
           </NuxtLink>
+
         </li>
 
-        <li class="menu-item">
-          <NuxtLink to="/profile" class="menu-link">
-            <i class="menu-icon tf-icons bx bx-user"></i>
-            <div data-i18n="Analytics">Profile</div>
-          </NuxtLink>
-        </li>
-
-        <li class="menu-item">
-          <NuxtLink to="/dashboard/wallet" class="menu-link">
-            <i class="menu-icon tf-icons bx bx-wallet"></i>
-            <div data-i18n="Analytics">Wallets</div>
-          </NuxtLink>
-        </li>
-
-        <li class="menu-item">
-          <NuxtLink to="/dashboard/spents" class="menu-link">
-            <i class="menu-icon tf-icons bx bx-dollar-circle"></i>
-            <div data-i18n="Analytics">Spents</div>
-          </NuxtLink>
-        </li>
-
-        <li class="menu-header small text-uppercase">
-          <span class="menu-header-text">Services</span>
-        </li>
-
-        <li class="menu-item">
-          <NuxtLink to="/dashboard/calendar" class="menu-link">
-            <i class="menu-icon tf-icons bx bx-calendar"></i>
-            <div data-i18n="Analytics">Calendar</div>
-          </NuxtLink>
-        </li>
-
-        <li class="menu-item">
-          <NuxtLink to="/dashboard/calendar" class="menu-link">
-            <i class="menu-icon tf-icons bx bx-task"></i>
-            <div data-i18n="Analytics">To-do List</div>
-          </NuxtLink>
-        </li>
-
-        <!-- Misc -->
-        <li class="menu-header small text-uppercase"><span class="menu-header-text">Contact</span></li>
-        <li class="menu-item">
-          <a href="https://github.com/themeselection/sneat-html-admin-template-free/issues" target="_blank"
-            class="menu-link">
-            <i class="menu-icon tf-icons bx bx-support"></i>
-            <div data-i18n="Support">Support</div>
-          </a>
-        </li>
-        <li class="menu-item">
-          <a href="https://themeselection.com/demo/sneat-bootstrap-html-admin-template/documentation/" target="_blank"
-            class="menu-link">
-            <i class="menu-icon tf-icons bx bx-code-alt"></i>
-            <div data-i18n="Documentation">About us</div>
-          </a>
-        </li>
       </ul>
     </aside>
   </div>
 </template>
+
+<script>
+export default {
+
+  data() {
+    return {
+      menuLinks: [
+        { id: 0, header: true, label: 'Overview' },
+        { id: 1, header: false, label: 'Dashboard', link: '/dashboard', icon: 'bx-home-circle', active: false, },
+        { id: 2, header: false, label: 'Profile', link: '/dashboard/profile', icon: 'bx-user', active: false, },
+        { id: 3, header: false, label: 'Wallets', link: '/dashboard/wallet', icon: 'bx-wallet', active: false, },
+        { id: 4, header: false, label: 'Spents', link: '/dashboard/spent', icon: 'bx-dollar-circle', active: false, },
+        { id: 5, header: true, label: 'Services' },
+        { id: 6, header: false, label: 'Calendar', link: '/dashboard/calendar', icon: 'bx-calendar', active: false, },
+        { id: 7, header: false, label: 'To-do List', link: '/dashboard/tasks', icon: 'bx-task', active: false, },
+        { id: 8, header: true, label: 'Contact' },
+        { id: 9, header: false, label: 'Support', link: '', icon: 'bx-support', active: false, },
+        { id: 10, header: false, label: 'About us', link: '', icon: 'bx-code-alt', active: false, },
+      ]
+    }
+  },
+
+  mounted() {
+    const activedMenuLink = localStorage.getItem('activedMenuLink')
+    if (!activedMenuLink) this.activeMenuLink(1) 
+    this.activeMenuLink(activedMenuLink)
+  },
+
+  methods: {
+
+    activeMenuLink(id) {
+
+      this.menuLinks.forEach((menu) => {
+        if (menu.active) menu['active'] = false
+      })
+
+      this.menuLinks[id].active = true
+      localStorage.setItem('activedMenuLink', id)
+    },
+
+    activeCollapsedMenu() {
+      this.$nuxt.$emit('setCollapsedMenu', false)
+    }
+
+  },
+
+}
+</script>
