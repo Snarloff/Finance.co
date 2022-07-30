@@ -1,5 +1,5 @@
 export default {
-  
+
   getWallets(context, filter = {}) {
     return this.$axios.get(`/wallet/index/${this.$auth.user.id}`, {
       params: { ...filter }

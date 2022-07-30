@@ -44,9 +44,11 @@
                     <div class="col-sm-10">
                       <div class="input-group input-group-merge">
                         <span class="input-group-text"><i class='bx bx-palette'></i></span>
-                        <input type="text" id="basic-icon-default-email" class="form-control"
-                          placeholder="Select an icon" aria-label="Select an icon"
-                          aria-describedby="basic-icon-default-email2" v-model="icon" @click="on" required />
+
+                        <input type="text" id="basic-icon-default-email" class="form-control" placeholder="Select an icon"
+                          aria-label="Select an icon" aria-describedby="basic-icon-default-email2" v-model="icon"
+                          @click="on" required />
+
                       </div>
                       <div class="form-text">Inside the modal select an icon of your choice</div>
                     </div>
@@ -99,8 +101,9 @@ export default {
 
     async create() {
 
+      
       try {
-
+        
         await this.$store.dispatch('wallet/createWallet', { ...this.form, icon: this.icon })
         this.$router.push('/dashboard/wallet')
 
@@ -111,7 +114,7 @@ export default {
     }
 
   }
-
+   
 }
 
 </script>
