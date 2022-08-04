@@ -1,4 +1,4 @@
-# financecofrontend
+# Finance.co Frontend
 
 ## Build Setup
 
