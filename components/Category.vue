@@ -38,7 +38,7 @@
 
                   <input type="text" id="basic-icon-default-email" class="form-control" placeholder="Select an icon"
                     aria-label="Select an icon" aria-describedby="basic-icon-default-email2" v-model="form.icon"
-                    @click="on" required />
+                    @click="on" required autocomplete="off" />
 
                 </template>
               </vfa-picker>
@@ -76,8 +76,18 @@
 
       <div class="card-body">
 
+        <p v-if="$fetchState.pending">Fetching categories...</p>
+
         <ul class="p-0 m-0">
-          <li class="d-flex mb-4 pb-1" v-for="category in categories" :key="category.id">
+
+          <li class="mb-2 pb-1 w-100 d-block mt-2" v-if="categories.length == 0">
+            <div class="alert alert-primary" role="alert"><strong>You don't have</strong> any categories yet!
+              <strong>Create one</strong> right now.
+            </div>
+          </li>
+
+          <li class="d-flex mb-3 item pb-1" v-for="category in categories" :key="category.id"
+            @click="showData(category.id)">
 
             <form @submit.prevent="update">
               <Modal :id="'updateCategory' + category.id" title="Update category">
@@ -152,8 +162,8 @@
                   </button>
                   <div class="dropdown-menu dropdown-menu-end" aria-labelledby="transactionID">
 
-                    <a @click="setData(category)" class="dropdown-item" href="javascript:void(0);" type="button" data-bs-toggle="modal"
-                      :data-bs-target="'#updateCategory' + category.id">
+                    <a @click="setData(category)" class="dropdown-item" href="javascript:void(0);" type="button"
+                      data-bs-toggle="modal" :data-bs-target="'#updateCategory' + category.id">
                       <i class='bx bx-edit text-warning'></i> Edit category
                     </a>
 
@@ -226,7 +236,7 @@ export default {
 
         try {
           await this.$store.dispatch('category/deleteCategory', id)
-          this.categories.splice(this.categories.indexOf(id), 1)
+          await this.$nuxt.refresh()
         } catch (error) {
           console.log(error)
         }
@@ -255,8 +265,32 @@ export default {
       }
     },
 
+    showData(categoryId) {
+      this.$router.push({
+        name: 'dashboard-spent',
+        query: {
+          categoryId,
+        },
+      })
+    },
+
   },
 
 }
 
 </script>
+
+<style scoped>
+.item {
+  cursor: pointer;
+  border-radius: 5.5px;
+}
+
+.item:hover {
+  background-color: #eee;
+  padding-top: 3px;
+  padding-bottom: 1px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+</style>

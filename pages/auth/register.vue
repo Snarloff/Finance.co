@@ -67,7 +67,7 @@
               </div>
               <div class="mb-3">
                 <label for="email" class="form-label">Email</label>
-                <input type="text" class="form-control" id="email" name="email" placeholder="Enter your email" v-model="form.email" />
+                <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" v-model="form.email" />
               </div>
               <div class="mb-3 form-password-toggle">
                 <label class="form-label" for="password">Password</label>
@@ -76,6 +76,15 @@
                     placeholder="··············"
                     aria-describedby="password" v-model="form.password" />
                   <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
+                </div>
+              </div>
+              <div class="mb-3 form-password-toggle">
+                <label class="form-label" for="salary">Salary</label>
+                <div class="input-group input-group-merge">
+                  <input type="number" step="0.01" id="salary" class="form-control" name="salary"
+                    placeholder="$ 500"
+                    aria-describedby="salary" v-model="form.salary" />
+                  <span class="input-group-text cursor-pointer"><i class="bx bx-salary"></i></span>
                 </div>
               </div>
 
@@ -119,6 +128,7 @@ export default {
         name: '',
         email: '',
         password: '',
+        salary: 0
       },
     }
   },
